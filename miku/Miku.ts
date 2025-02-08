@@ -1,34 +1,21 @@
-import type { Channel, VoiceChannelResponse, Options, VoiceChannelOptions } from "@miku/types";
-import Client from "./Client";
+import type { ChannelResponse, Options, VoiceChannelOptions, VoiceChannelResponse } from "@miku/types";
+import VoiceChannel from "./VoiceChannel";
 
-interface Methods {
-    get create(): Create;
-    get delete(): Delete
+interface VoiceCh {
+    create(channel: VoiceChannelOptions): Promise<VoiceChannelResponse>
+    delete(id: string): Promise<ChannelResponse>
 }
 
-interface Create {
-    voiceChannel: (channel: VoiceChannelOptions) => Promise<VoiceChannelResponse>
-}
+export default class Miku {
 
-interface Delete {
-    voiceChannel(id: string): Promise<Channel>
-}
+    public static guild_id: string;
 
-export default class Miku extends Client implements Methods {
-
-    public constructor(opts: Options) {
-        super(opts)
+    public constructor(public readonly opts: Options) {
+        Miku.guild_id= opts.guild_id;
     }
 
-    public get create(): Create {
-        return {
-            voiceChannel: async (channel: VoiceChannelOptions): Promise<VoiceChannelResponse> => await this.voiceChannel(channel)
-        }
+    public get voiceChannel(): VoiceCh {
+        return new VoiceChannel(this.opts)
     }
 
-    public get delete(): Delete {
-        return {
-            voiceChannel: async (id: string): Promise<Channel> => await this.channel(id)
-        }
-    }
 }

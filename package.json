@@ -1,7 +1,7 @@
 {
   "name": "miku",
   "description": "Miku, will create a voice channel on Discord for you.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"

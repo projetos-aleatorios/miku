@@ -1,4 +1,9 @@
-import type { CustomError } from "@miku/types";
+interface CustomError {
+    readonly code: number;
+    readonly type: string;
+    readonly message: string;
+    readonly error_details?: string | Array<string> | null
+}
 
 export default class MikuError extends Error implements CustomError {
 
@@ -6,7 +11,7 @@ export default class MikuError extends Error implements CustomError {
     readonly type: string;
     readonly error_details?: string | Array<string> | null;
 
-    constructor({ code, type, message, error_details }: CustomError) {
+    public constructor({ code, type, message, error_details }: CustomError) {
         super()
         this.code = code
         this.type = type

@@ -1,12 +1,13 @@
-# 丫 (๑°Miku°๑)丫 .ᐟ.ᐟ »-v0.1.0→
+# 丫 (๑°Miku°๑)丫 .ᐟ.ᐟ »-v0.1.1→
 ╰ `Miku` é uma biblioteca para criação de salas de voz no Discord, ideal para quando os duos desejam se comunicar após adquirir um serviço no **[Duozada](https://app.duozada.com/)**. <br>
-╰ **[Duozada](https://app.duozada.com/)** é um `marketplace` para vende de serviços para jogos online. 
+╰ **[Duozada](https://app.duozada.com/)** é um `marketplace` para venda de serviços para jogos online. 
 
 <img src="./docs/miku.gif" width="1000">
 
 # (づ ᴗ _ᴗ)づ EXAMPLE ⋆˚✿˖°
 ```ts
-import { Miku } from "@miku";
+import Miku from "@miku";
+import MikuError from "@miku/error/Error";
 
 const miku = new Miku({
     token: '<TOKEN>',
@@ -14,13 +15,18 @@ const miku = new Miku({
     url: '<YOUR_WEBSITE_URL>'
 });
 
-const channel = await miku.create.voiceChannel({
+try {
+    const channel = await miku.create.voiceChannel({
     name: '<CHANNEL_NAME>',
     parent_id: '<CATEGORY_ID>',
     usersId: ['123', '321']
 });
 
 console.log(channel)
+
+} catch(e: unknown) {
+    if(e instanceof MikuError) return console.error(e)
+}
 ```
 
 # ₊✩‧₊˚౨OUTPUTৎ˚₊✩‧₊
