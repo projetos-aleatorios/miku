@@ -11,7 +11,7 @@ export default class MikuError extends Error implements CustomError {
     readonly type: string;
     readonly error_details?: string | Array<string> | null;
 
-    public constructor({ code, type, message, error_details }: CustomError) {
+    public constructor({ code, type, message, error_details = null }: CustomError) {
         super()
         this.code = code
         this.type = type
