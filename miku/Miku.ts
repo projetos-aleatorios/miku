@@ -8,10 +8,14 @@ interface VoiceMethods {
 
 export default class Miku {
 
-    public static guild_id: string;
+    private static id: string;
 
     public constructor(public readonly opts: Options) {
-        Miku.guild_id= opts.guild_id;
+        Miku.id = opts.guild_id;
+    }
+
+    public static get guild_id(): string {
+        return this.id
     }
 
     public get voiceChannel(): VoiceMethods {
