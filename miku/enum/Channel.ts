@@ -11,3 +11,8 @@ export enum ChannelPermissions {
     CONNECT = 0x0000000000100000,
     SPEAK = 0x0000000000200000,
 }
+
+export enum PermissionType {
+    Role,
+    Member
+}

@@ -1,4 +1,4 @@
-import type { ChannelType } from "@miku/enum";
+import type { PermissionType, ChannelType } from "@miku/enum";
 
 export type Options = {
     token: string;
@@ -13,7 +13,7 @@ export type Instance = {
 }
 
 export type Channel = {
-    name: string;
+    name?: string;
     type: ChannelType;
     user_limit: number;
     parent_id: string;
@@ -24,7 +24,7 @@ export type Channel = {
 
 export type Permissions = {
     id: string;
-    type: number;
+    type: PermissionType;
     allow: number;
     deny?: number
 }
@@ -34,7 +34,7 @@ export type VoiceChannelResponse = {
     invite: string
 } | undefined
 
-export type VoiceChannel = {
+export type ChannelResponse = {
     id: string,
     type: number,
     last_message_id: Array<string> | null,
@@ -50,12 +50,5 @@ export type VoiceChannel = {
     nsfw: boolean
 }
 
-export type VoiceChannelOptions = Omit<Channel, ChannelOmit>
 export type ChannelOmit = 'permission_overwrites' | 'type' | 'position' | 'user_limit';
-
-export type CustomError = {
-    code: number;
-    type: string;
-    message: string;
-    error_details?: string | Array<string> | null
-}
+export type VoiceChannelOptions = Omit<Channel, ChannelOmit>
