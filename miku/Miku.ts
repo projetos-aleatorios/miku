@@ -1,7 +1,7 @@
 import type { ChannelResponse, Options, VoiceChannelOptions, VoiceChannelResponse } from "@miku/types";
 import VoiceChannel from "./VoiceChannel";
 
-interface VoiceCh {
+interface VoiceMethods {
     create(channel: VoiceChannelOptions): Promise<VoiceChannelResponse>
     delete(id: string): Promise<ChannelResponse>
 }
@@ -14,7 +14,7 @@ export default class Miku {
         Miku.guild_id= opts.guild_id;
     }
 
-    public get voiceChannel(): VoiceCh {
+    public get voiceChannel(): VoiceMethods {
         return new VoiceChannel(this.opts)
     }
 
