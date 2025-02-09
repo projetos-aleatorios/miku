@@ -33,7 +33,7 @@ export default class Channel extends Client {
         const invite = await this.invite(response.id, users.length);
 
         return {
-            id: response.id,
+            ...response,
             invite: invite ?? `https://discord.com/channels/${response.guild_id}/${response.id}`
         }
     }
