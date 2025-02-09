@@ -1,5 +1,5 @@
 import type { Options } from "@miku/types/Miku";
-import type { ChannelOptions, VoiceChannelResponse, ChannelStructure } from "@miku/types/Channel";
+import type { ChannelOptions, ChannelStructure, VoiceChannelResponse } from "@miku/types/Channel";
 import Channel from "./Channel";
 
 interface ChannelMethods {
