@@ -1,6 +1,6 @@
 import Miku from "@miku";
 import { ChannelPermissions, PermissionType } from "@miku/enum"
-import type { Permissions } from "@miku/types"
+import type { Permissions } from "@miku/types/Channel"
 
 export default abstract class Utils {
 

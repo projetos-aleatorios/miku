@@ -1,6 +1,6 @@
 import ValidationError from "@miku/error/ValidationError";
 import Utils from "./Utils";
-import type { Instance, Options } from "@miku/types";
+import type { Instance, Options } from "@miku/types/Miku";
 
 export default abstract class Client extends Utils {
 
