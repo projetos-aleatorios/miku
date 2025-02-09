@@ -1,4 +1,4 @@
-import ValidationError from "@miku/error/ValidationError";
+import ValidationError from "@miku/errors/ValidationError";
 import Utils from "./Utils";
 import type { Instance, Options } from "@miku/types/Miku";
 
@@ -10,7 +10,7 @@ export default abstract class Client extends Utils {
     private readonly _BASE_URL = 'https://discord.com/api'
     private readonly _VERSION = 10
 
-    protected constructor(opts: Options) {
+    protected constructor(protected readonly opts: Options) {
         super()
         this.token = this.tokenReplace(opts.token);
         this.url = opts.url
@@ -29,8 +29,11 @@ export default abstract class Client extends Utils {
         })
 
         const data: T = await response.json()
-
-        new ValidationError(data);
+        
+        if (!response.ok) {
+            new ValidationError(data);
+        }
+        
         return data
     }
 }

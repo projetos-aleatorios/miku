@@ -1,4 +1,4 @@
-import type { Channel, Invite } from "./Channel";
+import type { Channel, Invite } from "./Body";
 
 export type Options = {
     token: string;

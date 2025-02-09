@@ -1,17 +1,17 @@
 import type { Options } from "@miku/types/Miku";
-import type { ChannelOptions, ChannelStructure, VoiceChannelResponse } from "@miku/types/Channel";
+import type { ChannelOptions, ChannelResponse, ChannelDeleteResponse } from "@miku/types/Channel";
 import Channel from "./Channel";
 
 interface ChannelMethods {
-    create(channel: ChannelOptions): Promise<VoiceChannelResponse>
-    delete(id: string): Promise<ChannelStructure>
+    create(channel: ChannelOptions): Promise<ChannelResponse>
+    delete(id: string): Promise<ChannelDeleteResponse>
 }
 
 export default class Miku {
 
     private static id: string;
 
-    public constructor(public readonly opts: Options) {
+    public constructor(private readonly opts: Options) {
         Miku.id = opts.guild_id;
     }
 
