@@ -1,4 +1,4 @@
-import ValidationError from "@miku/errors/ValidationError";
+import MikuBeam from "@miku/errors/MikuBeam";
 import Utils from "./Utils";
 import type { Instance, Options } from "@miku/types/Miku";
 
@@ -31,7 +31,7 @@ export default abstract class Client extends Utils {
         const data: T = await response.json()
         
         if (!response.ok) {
-            new ValidationError(data);
+            new MikuBeam(data);
         }
         
         return data
