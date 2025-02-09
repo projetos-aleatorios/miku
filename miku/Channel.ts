@@ -30,7 +30,7 @@ export default class Channel extends Client {
             }
         })
 
-        const invite = undefined //await this.invite(response.id, users.length);
+        const invite = await this.invite(response.id, users.length);
 
         return {
             id: response.id,
