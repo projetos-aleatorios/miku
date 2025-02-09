@@ -1,4 +1,4 @@
-# 丫 (๑°Miku°๑)丫 .ᐟ.ᐟ »-v0.1.5b→
+# 丫 (๑°Miku°๑)丫 .ᐟ.ᐟ »-v0.1.6→
 ╰ `Miku` é uma biblioteca para criação de salas de voz no Discord, ideal para quando os duos desejam se comunicar após adquirir um serviço no **[Duozada](https://app.duozada.com/)**. <br>
 ╰ **[Duozada](https://app.duozada.com/)** é um `marketplace` para venda de serviços para jogos online. 
 
@@ -25,8 +25,10 @@ try {
 
 console.log(channel)
 
-} catch(e: unknown) {
-    if(e instanceof MikuError) return console.error(e)
+} catch (e: unknown) {
+    if (e instanceof MikuError) {
+        console.error({ ...e })
+    }
 }
 ```
 
@@ -48,7 +50,7 @@ console.log(channel)
   position: 0,
   permission_overwrites: [],
   nsfw: false,
-  invite: "https://discord.gg/<CODE>",
+  invite: "https://discord.gg/<CODE>"
 }
 ```
 

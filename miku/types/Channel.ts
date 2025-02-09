@@ -1,14 +1,9 @@
-import type { ChannelType, PermissionType } from "@miku/enum";
+import type { PermissionType } from "@miku/enum";
+import type { Guild } from "./Guild";
+import type { User } from "./User";
+import type { Channel } from "./Body";
 
-export type Channel = {
-    name?: string;
-    type?: ChannelType;
-    user_limit: number;
-    parent_id?: string;
-    permission_overwrites: Array<Permissions>;
-    position: number;
-    usersId: Array<Snowflake>
-}
+export type Snowflake = string;
 
 export type Permissions = {
     id: Snowflake;
@@ -17,30 +12,39 @@ export type Permissions = {
     deny?: number
 }
 
-export type VoiceChannelResponse = ChannelStructure & { invite: string } | undefined;
-
 export type ChannelStructure = {
-    id: string;
-    guild_id: string;
+    id: Snowflake;
     type: number;
-    name: string | null;
-    position: number;
-    permission_overwrites: Array<Permissions>;
-    nsfw: boolean
     last_message_id: string | null;
     flags: number;
+    guild_id: Snowflake;
+    name: string | null;
     parent_id: string | null;
     rate_limit_per_user?: number;
     bitrate?: number;
     user_limit?: number;
-    rtc_region?: string | null;
+    rtc_region?: string | null
+    position: number;
+    permission_overwrites: Array<Permissions>;
+    nsfw: boolean
 }
 
-export type Invite = {
-    max_uses: number
+export type InviteStructure = {
+    type: number;
+    code: string;
+    inviter?: User;
+    max_age: number;
+    created_at: string;
+    expires_at?: string | null;
+    guild?: Guild;
+    guild_id: Snowflake;
+    channel: Pick<ChannelStructure, 'id' | 'type' | 'name'> | null;
+    uses: number;
+    max_uses: number;
+    temporary: boolean
 }
 
-export type Snowflake = string;
-
-export type OmitChannel = 'permission_overwrites' | 'position' | 'user_limit';
-export type ChannelOptions = Omit<Channel, OmitChannel>
+export type ChannelResponse = ChannelStructure & { invite: string } | undefined;
+export type ChannelDeleteResponse = ChannelStructure;
+export type InviteResponse = InviteStructure & { url: string } | undefined;
+export type ChannelOptions = Omit<Channel, 'permission_overwrites' | 'position' | 'user_limit'>

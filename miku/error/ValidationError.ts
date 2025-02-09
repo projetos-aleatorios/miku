@@ -2,13 +2,12 @@ import MikuError from './Error';
 
 export default class ValidationError {
     public constructor(private readonly data: any) {
-        switch (true) {
-            case this.data?.code == 0:
-                const [code = 500, message = 'unknown'] = this.data.message.split(':');
-                throw new MikuError({ code: Number(code), type: 'Miku', message: message?.trim() })
-            case 'errors' in this.data: {
-                throw new MikuError({ code: data.code, type: 'Miku', message: data.message, error_details: data.errors })
-            }
+
+        if ('code' in this.data) {
+            const { code, message } = this.data;
+            throw new MikuError({ code: code, type: 'Miku', message: message, error_details: data?.errors })
         }
+
+        throw new MikuError({ code: 500, type: 'Miku', message: 'unknown' })
     }
 }
