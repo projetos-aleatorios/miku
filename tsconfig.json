@@ -27,7 +27,7 @@
       "@miku": ["./miku/Miku"],
       "@miku/enum": ["./miku/enum/Channel"],
       "@miku/types/*": ["./miku/types/*"],
-      "@miku/errors/*": ["./miku/error/*"]
+      "@miku/errors/*": ["./miku/errors/*"]
     }
   }
 }

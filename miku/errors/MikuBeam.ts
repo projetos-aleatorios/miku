@@ -1,6 +1,6 @@
-import MikuError from './Error';
+import MikuError from './MikuError';
 
-export default class ValidationError {
+export default class MikuBeam {
     public constructor(private readonly data: any) {
 
         if ('code' in this.data) {
