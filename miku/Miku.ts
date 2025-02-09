@@ -1,9 +1,10 @@
-import type { ChannelResponse, Options, VoiceChannelOptions, VoiceChannelResponse } from "@miku/types";
-import VoiceChannel from "./VoiceChannel";
+import type { Options } from "@miku/types/Miku";
+import type { ChannelOptions, VoiceChannelResponse, ChannelStructure } from "@miku/types/Channel";
+import Channel from "./Channel";
 
-interface VoiceMethods {
-    create(channel: VoiceChannelOptions): Promise<VoiceChannelResponse>
-    delete(id: string): Promise<ChannelResponse>
+interface ChannelMethods {
+    create(channel: ChannelOptions): Promise<VoiceChannelResponse>
+    delete(id: string): Promise<ChannelStructure>
 }
 
 export default class Miku {
@@ -18,8 +19,8 @@ export default class Miku {
         return this.id
     }
 
-    public get voiceChannel(): VoiceMethods {
-        return new VoiceChannel(this.opts)
+    public get channel(): ChannelMethods {
+        return new Channel(this.opts)
     }
 
 }
