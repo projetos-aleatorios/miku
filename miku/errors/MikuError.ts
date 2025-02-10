@@ -16,6 +16,6 @@ export default class MikuError extends Error implements CustomError {
         this.code = code
         this.type = type
         this.message = message
-        this.error_details = error_details ?? null
+        this.error_details = error_details
     }
 }
