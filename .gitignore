@@ -2,3 +2,4 @@
 bun.lock
 test.ts
 index.ts
+/dist

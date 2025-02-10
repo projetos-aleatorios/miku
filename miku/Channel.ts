@@ -3,6 +3,7 @@ import type { ChannelStructure, ChannelOptions, ChannelResponse, InviteStructure
 import Client from "./Client";
 import Miku from "@miku";
 import { ChannelType } from "@miku/enum";
+import { discord } from "@miku/constants";
 
 export default class Channel extends Client {
 
@@ -34,7 +35,7 @@ export default class Channel extends Client {
 
         return {
             ...response,
-            invite: invite?.url ?? `https://discord.com/channels/${response.guild_id}/${response.id}`
+            invite: invite?.url ?? `${discord.channels}/${response.guild_id}/${response.id}`
         }
     }
 
@@ -45,7 +46,7 @@ export default class Channel extends Client {
     private async invite(id: string, max_uses: number): Promise<InviteResponse> {
         try {
             const response = await this.instance<InviteStructure>({ method: 'POST', endpoint: `channels/${id}/invites`, body: { max_uses } })
-            return { ...response, url: 'https://discord.gg/'.concat(response.code) }
+            return { ...response, url: discord.invite.concat(response.code) }
         } catch (e) { return }
     }
 }
