@@ -1,14 +1,13 @@
 import MikuBeam from "@miku/errors/MikuBeam";
 import Utils from "./Utils";
 import type { Instance, Options } from "@miku/types/Miku";
+import { version } from "@miku/package";
+import { restOptions } from "@miku/constants";
 
 export default abstract class Client extends Utils {
 
     private readonly token: string;
     private readonly url: string;
-
-    private readonly _BASE_URL = 'https://discord.com/api'
-    private readonly _VERSION = 10
 
     protected constructor(protected readonly opts: Options) {
         super()
@@ -18,10 +17,10 @@ export default abstract class Client extends Utils {
 
     protected async instance<const T>({ method, endpoint, ...options }: Instance): Promise<T> {
 
-        const response = await fetch(`${this._BASE_URL}/v${this._VERSION}/${endpoint}`, {
+        const response = await fetch(`${restOptions.api}/v${restOptions.version}/${endpoint}`, {
             method,
             headers: {
-                'User-Agent': `DiscordBot (${this.url}, ${this._VERSION})`,
+                'User-Agent': `DiscordBot (${this.url}, ${version})`,
                 'Content-Type': 'application/json',
                 'Authorization': `Bot ${this.token}`
             },
@@ -29,11 +28,11 @@ export default abstract class Client extends Utils {
         })
 
         const data: T = await response.json()
-        
+
         if (!response.ok) {
             new MikuBeam(data);
         }
-        
+
         return data
     }
 }
